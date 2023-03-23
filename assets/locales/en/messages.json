@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "chatgpt-everywhere"
+    },
+    "appShortName": {
+        "message": "chatgpt-everywhere"
+    },
+    "appDescription": {
+        "message": "Adds chat-gpt functionality to any textbox on the web"
+    }
+}

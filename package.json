@@ -1,0 +1,61 @@
+{
+  "name": "chatgpt-everywhere",
+  "description": "Adds chat-gpt functionality to any textbox on the web.",
+  "version": "0.0.1",
+  "homepage": "http://chrome.google.com/webstore",
+  "author": "Marcel Panse",
+  "repository": {
+    "type": "git",
+    "url": "ENTER GIT REPO URL"
+  },
+  "scripts": {
+    "start": "xt-build -e dev -w",
+    "start:firefox": "xt-build -e dev -p firefox -w",
+    "build": "xt-build -e prod",
+    "build:firefox": "xt-build -e prod -p firefox",
+    "clean": "xt-clean",
+    "docs": "xt-docs",
+    "test": "xt-test",
+    "coverage": "nyc --reporter=lcov npm run test",
+    "sync": "xt-sync"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintIgnore": [
+    "test/**/*"
+  ],
+  "devDependencies": {
+    "extension-cli": "latest",
+    "prettier": "^2.8.4"
+  },
+  "xtdocs": {
+    "source": {
+      "include": [
+        "README.md",
+        "src"
+      ]
+    }
+  },
+  "xtbuild": {
+    "js_bundles": [
+      {
+        "name": "background",
+        "src": "./src/background.js"
+      },
+      {
+        "name": "popup",
+        "src": "./src/popup.js"
+      },
+      {
+        "name": "selection",
+        "src": "./src/selection.js"
+      }
+    ]
+  },
+  "dependencies": {
+    "openai-edge": "^0.3.2"
+  }
+}
