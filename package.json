@@ -6,7 +6,7 @@
   "author": "Marcel Panse",
   "repository": {
     "type": "git",
-    "url": "ENTER GIT REPO URL"
+    "url": "https://github.com/marcelpanse/chatgpt-everywhere"
   },
   "scripts": {
     "start": "xt-build -e dev -w",

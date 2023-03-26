@@ -2,13 +2,13 @@
   "name": "ChatGPT everywhere",
   "short_name": "ChatGPT everywhere",
   "description": "Adds chat-gpt functionality to any textbox on the web.",
-  "homepage_url": "http://chrome.google.com/webstore",
+  "homepage_url": "https://github.com/marcelpanse/chatgpt-everywhere",
   "version": "0.0.1",
   "version_name": "0.0.1",
   "manifest_version": 3,
   "default_locale": "en",
   "minimum_chrome_version": "88",
-  "permissions": ["activeTab", "contextMenus", "background", "storage", "scripting"],
+  "permissions": ["activeTab", "contextMenus", "background", "storage"],
   "icons": {
     "128": "assets/img/128x128.png"
   },
