@@ -14,7 +14,7 @@ ChatGPT-Everywhere is fully open-source, and we encourage Pull Requests to add n
 ## Usage
 
 Simply install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-everywhere/kebfhgodkejbfelbbcekkamfpcichken). Click on the extension icon to open the settings page and enter your API key. You can now use the extension on any textbox on the web.
-
+Get your OpenAI API key at https://platform.openai.com/account/api-keys. If you like the extension, please support us by leaving a short review on the [Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-everywhere/kebfhgodkejbfelbbcekkamfpcichken).
 
 ## Development 
 
