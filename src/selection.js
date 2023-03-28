@@ -1,14 +1,9 @@
-console.log('adding listeners')
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log('listener', request)
   if (request.method === 'alert') {
     alert(request.data)
   } else if (request.method === 'getSelection') {
-    console.log('getting selection', window.getSelection().toString())
     sendResponse({data: window.getSelection().toString()})
   } else if (request.method === 'clearSelection') {
-    console.log('clear selection')
     const elem = document.activeElement
 
     if (elem && !elem.isContentEditable) {
@@ -24,7 +19,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
     }
   } else if (request.method === 'replaceSelection' && request.data) {
-    console.log('replacing selection', request.data)
     const elem = document.activeElement
 
     if (elem && elem.isContentEditable) {

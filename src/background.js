@@ -33,17 +33,14 @@ chrome.runtime.onInstalled.addListener(async () => {
   chrome.contextMenus.create({
     id: 'command',
     parentId: 'chatgpt',
-    title: 'Ask question',
+    title: 'Execute command',
     contexts: ['selection'],
   })
 })
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const {menuItemId, frameId} = info
-  console.log('clicked', menuItemId, frameId, tab.id)
-
   const {key} = await chrome.storage.local.get(['key'])
-  console.log('the key', key)
 
   if (!key) {
     const error = 'Please set your OpenAI API key in the extension options'
@@ -54,7 +51,6 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
   const {data: selectedText} = await chrome.tabs.sendMessage(tab.id, {method: 'getSelection'})
 
-  console.log('selected text', selectedText)
   if (selectedText) {
     switch (menuItemId) {
       case 'improveWriting':
@@ -82,7 +78,6 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 })
 
 const runCommand = async (tab, key, command, commandOnly = false) => {
-  console.log('running command', command)
   const configuration = new Configuration({
     apiKey: key,
   })
@@ -112,7 +107,6 @@ const runCommand = async (tab, key, command, commandOnly = false) => {
       .read()
       .then(({done, value}) => {
         if (done) {
-          console.log('done')
           return
         }
         let isFinished = false
@@ -124,13 +118,11 @@ const runCommand = async (tab, key, command, commandOnly = false) => {
         for (const r of res) {
           if (r.startsWith('[DONE]')) {
             isFinished = true
-            console.log('done')
           } else {
             output += JSON.parse(r).choices[0].delta.content || ''
           }
         }
 
-        console.log('res', output)
         chrome.tabs.sendMessage(tab.id, {method: 'replaceSelection', data: output})
 
         if (!isFinished) {
