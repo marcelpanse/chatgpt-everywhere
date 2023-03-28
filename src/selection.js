@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'alert') {
+    console.error(request.data)
     alert(request.data)
   } else if (request.method === 'getSelection') {
     sendResponse({data: window.getSelection().toString()})

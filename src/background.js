@@ -119,7 +119,12 @@ const runCommand = async (tab, key, command, commandOnly = false) => {
           if (r.startsWith('[DONE]')) {
             isFinished = true
           } else {
-            output += JSON.parse(r).choices[0].delta.content || ''
+            const parsed = JSON.parse(r)
+            if (parsed.error) {
+              throw new Error('Problem getting response from OpenAI: ' + parsed.error.message)
+            } else {
+              output += parsed.choices[0].delta.content || ''
+            }
           }
         }
 
@@ -131,6 +136,7 @@ const runCommand = async (tab, key, command, commandOnly = false) => {
       })
       .catch((error) => {
         console.error(error)
+        chrome.tabs.sendMessage(tab.id, {method: 'alert', data: error.toString()})
       })
   }
   readStream()
